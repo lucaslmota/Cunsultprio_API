@@ -44,7 +44,7 @@ namespace ConsultorioWebAPI
 
             services.AutoMapperConfiguration();
 
-            services.AddDbContext<ConsultorioContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConsulConnection")));
+            services.AddDatabaseConfiguration(Configuration);
 
             services.AddDependencyInjectionConfiguration();
 
@@ -59,6 +59,8 @@ namespace ConsultorioWebAPI
                 app.UseDeveloperExceptionPage();
                 
             }
+
+            app.UseDatabaseConfiguration();
 
             app.UseSwaggerConfiguration();
 

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ConsultorioWebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:ConsultorioWebAPI.Controllers.ClienteController.Get">
+            <summary>
+            Retorna todos os clientes cadastrado na base
+            </summary>
+        </member>
+        <member name="M:ConsultorioWebAPI.Controllers.ClienteController.GetId(System.Int32)">
+            <summary>
+            Retorna um cliente pelo Id
+            </summary>
+            <param name="id" example="123"></param>
+        </member>
+        <member name="M:ConsultorioWebAPI.Controllers.ClienteController.Post(Consultorio.Core.Shared.ModelViews.NovoCliente)">
+            <summary>
+            Insere um novo cliente
+            </summary>
+            <param name="novoCliente"></param>
+        </member>
+        <member name="M:ConsultorioWebAPI.Controllers.ClienteController.Put(Consultorio.Core.Shared.ModelViews.AlterarCliente)">
+            <summary>
+            Altera um cliente
+            </summary>
+            <param name="alterarClientecliente"></param>
+        </member>
+        <member name="M:ConsultorioWebAPI.Controllers.ClienteController.Delete(System.Int32)">
+            <summary>
+            Deleta um cliente
+            </summary>
+            <param name="id"></param>
+        </member>
+    </members>
+</doc>

@@ -21,7 +21,7 @@ namespace ConsultorioData.Repository
 
         public async Task<IEnumerable<Cliente>> GetClientesAsync()
         {
-            return await _consultorioContext.Clientes.AsNoTracking().ToListAsync();//07:00
+            return await _consultorioContext.Clientes.AsNoTracking().ToListAsync();
         }
 
         public async Task<Cliente> GetClienteId(int id)

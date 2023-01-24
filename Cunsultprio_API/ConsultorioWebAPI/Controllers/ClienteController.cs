@@ -17,30 +17,51 @@ namespace ConsultorioWebAPI.Controllers
         {
             _clienteManager =   clienteManager;
         }
-        
+        /// <summary>
+        /// Retorna todos os clientes cadastrado na base
+        /// </summary>
         [HttpGet]
+        [ProducesResponseType(typeof(Cliente), 200)]
+        [ProducesResponseType(typeof(ProblemDetails),500)]
         public async Task<IActionResult> Get()
         {
             return Ok( await _clienteManager.GetClientesAsync());
         }
 
-       
+       /// <summary>
+       /// Retorna um cliente pelo Id
+       /// </summary>
+       /// <param name="id" example="123"></param>
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(Cliente), 200)]
+        [ProducesResponseType(typeof(ProblemDetails), 404)]
+        [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<IActionResult> GetId(int id)
         {
             return Ok( await _clienteManager.GetClienteId(id));
         }
 
-        // POST api/<ClienteController>
+        /// <summary>
+        /// Insere um novo cliente
+        /// </summary>
+        /// <param name="novoCliente"></param>
         [HttpPost]
+        [ProducesResponseType(typeof(Cliente), 201)]
+        [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<IActionResult> Post([FromBody] NovoCliente novoCliente)
         {
             var cadastraCliente = await _clienteManager.InsertCliente(novoCliente);
             return CreatedAtAction(nameof(Get), new {id = cadastraCliente.Id}, cadastraCliente);
         }
 
-        // PUT api/<ClienteController>/5
+        /// <summary>
+        /// Altera um cliente
+        /// </summary>
+        /// <param name="alterarClientecliente"></param>
         [HttpPut]
+        [ProducesResponseType(typeof(Cliente), 200)]
+        [ProducesResponseType(typeof(ProblemDetails), 404)]
+        [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<IActionResult> Put([FromBody] AlterarCliente alterarClientecliente)
         {
             var atlaizarCliente = await _clienteManager.UpdateCliente(alterarClientecliente);
@@ -52,8 +73,14 @@ namespace ConsultorioWebAPI.Controllers
             return Ok(atlaizarCliente);
         }
 
-        // DELETE api/<ClienteController>/5
+        /// <summary>
+        /// Deleta um cliente
+        /// </summary>
+        /// <param name="id"></param>
         [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(Cliente), 204)]
+        [ProducesResponseType(typeof(ProblemDetails), 404)]
+        [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<IActionResult> Delete(int id)
         {
             var deleteCliente = await _clienteManager.DeleteCliente(id);
