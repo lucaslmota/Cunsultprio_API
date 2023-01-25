@@ -2,6 +2,9 @@
 using ConsultorioCore.Domain;
 using ConsultorioManager.InterfacesManager;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Serilog.Core;
+using SerilogTimings;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,9 +16,11 @@ namespace ConsultorioWebAPI.Controllers
     public class ClienteController : ControllerBase
     {
         private readonly IClienteManager _clienteManager;
-        public ClienteController(IClienteManager clienteManager)
+        private readonly ILogger _logger;
+        public ClienteController(IClienteManager clienteManager, ILogger<ClienteController> logger)
         {
             _clienteManager =   clienteManager;
+            _logger = logger;
         }
         /// <summary>
         /// Retorna todos os clientes cadastrado na base
@@ -50,6 +55,15 @@ namespace ConsultorioWebAPI.Controllers
         [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<IActionResult> Post([FromBody] NovoCliente novoCliente)
         {
+            //Cliente clienteInserido; registrar os tempos de execução.
+            //using(Operation.Time("Foi requisitada a inserção de um novo cliente."))
+            //{
+            //    _logger.LogInformation("Foi requisitado a inserção de um novo cliente.");
+            //     clienteInserido = await _clienteManager.InsertCliente(novoCliente);
+            //}
+            //return CreatedAtAction(nameof(Get), new { id = clienteInserido.Id }, clienteInserido);
+
+            _logger.LogInformation("Foi requisitado a inserção de um novo cliente.");
             var cadastraCliente = await _clienteManager.InsertCliente(novoCliente);
             return CreatedAtAction(nameof(Get), new {id = cadastraCliente.Id}, cadastraCliente);
         }
