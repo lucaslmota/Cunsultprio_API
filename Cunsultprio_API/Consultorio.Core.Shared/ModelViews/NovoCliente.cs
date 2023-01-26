@@ -36,5 +36,9 @@ namespace Consultorio.Core.Shared.ModelViews
         /// </summary>
         /// <example>05769313201</example>
         public string Documento { get; set; }
+        /// <summary>
+        /// Novo endereço do cliente
+        /// </summary>
+        public NovoEndereco Endereco { get; set; }
     }
 }

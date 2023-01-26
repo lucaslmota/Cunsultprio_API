@@ -12,6 +12,8 @@ namespace ConsultorioManager.Mappings
             CreateMap<NovoCliente, Cliente>()
             .ForMember(destino => destino.Criacao, opcao => opcao.MapFrom(x => DateTime.Now))
             .ForMember(destino => destino.DataNascimento, opcao => opcao.MapFrom(x => x.DataNascimento.Date));
+
+            CreateMap<NovoEndereco, Endereco>();
         }
     }
 }

@@ -39,5 +39,10 @@
             </summary>
             <example>05769313201</example>
         </member>
+        <member name="P:Consultorio.Core.Shared.ModelViews.NovoCliente.Endereco">
+            <summary>
+            Novo endereço do cliente
+            </summary>
+        </member>
     </members>
 </doc>

@@ -1,4 +1,5 @@
 ﻿using ConsultorioCore.Domain;
+using ConsultorioData.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,20 @@ namespace ConsultorioData.Context
 {
     public class ConsultorioContext : DbContext
     {
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Endereco> Enderecos { get; set; }
         public ConsultorioContext(DbContextOptions options): base(options)
         {
 
         }
 
-        public DbSet<Cliente> Clientes { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new ClienteConfiguration());
+            modelBuilder.ApplyConfiguration(new EnderecoConfiguration());
+
+        } 
     }
 }
