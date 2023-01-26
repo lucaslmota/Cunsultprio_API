@@ -19,7 +19,7 @@ namespace ConsultorioWebAPI
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{ambiente}.json")
+                .AddJsonFile($"appsettings.{ambiente}.json", optional:true)
                 .Build();
             Log.Logger = new LoggerConfiguration()
                 //.Enrich.FromLogContext()//enriquecer o log
