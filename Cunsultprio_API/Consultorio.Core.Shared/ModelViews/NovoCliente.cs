@@ -26,11 +26,8 @@ namespace Consultorio.Core.Shared.ModelViews
         /// </summary>
         /// <example>M</example>
         public string Sexo { get; set; }
-        /// <summary>
-        /// Telefone do cliente
-        /// </summary>
-        /// <example>88999999999</example>
-        public string Telefone { get; set; }
+        
+        public ICollection<NovoTelefone> Telefone { get; set; }
         /// <summary>
         /// Documento
         /// </summary>

@@ -14,6 +14,7 @@ namespace ConsultorioManager.Mappings
             .ForMember(destino => destino.DataNascimento, opcao => opcao.MapFrom(x => x.DataNascimento.Date));
 
             CreateMap<NovoEndereco, Endereco>();
+            CreateMap<NovoTelefone, Telefone>();
         }
     }
 }

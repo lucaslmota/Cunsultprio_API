@@ -21,12 +21,19 @@ namespace ConsultorioData.Repository
 
         public async Task<IEnumerable<Cliente>> GetClientesAsync()
         {
-            return await _consultorioContext.Clientes.Include(x => x.Endereco).AsNoTracking().ToListAsync();
+            return await _consultorioContext.Clientes
+                .Include(x => x.Endereco)
+                .Include(x => x.Telefone)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         public async Task<Cliente> GetClienteId(int id)
         {
-            return await _consultorioContext.Clientes.Include(x => x.Endereco).SingleOrDefaultAsync(x => x.Id == id);
+            return await _consultorioContext.Clientes
+                .Include(x => x.Endereco)
+                .Include(x => x.Telefone)
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<Cliente> InsertCliente(Cliente cliente)
