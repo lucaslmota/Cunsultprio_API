@@ -4,41 +4,41 @@
         <name>Consultorio.Core.Shared</name>
     </assembly>
     <members>
-        <member name="T:Consultorio.Core.Shared.ModelViews.NovoCliente">
+        <member name="T:Consultorio.Core.Shared.ModelViews.Cliente.NovoCliente">
             <summary>
             Objeto usado para uma nova inserção de um novo cliente
             </summary>
         </member>
-        <member name="P:Consultorio.Core.Shared.ModelViews.NovoCliente.Nome">
+        <member name="P:Consultorio.Core.Shared.ModelViews.Cliente.NovoCliente.Nome">
             <summary>
             Nome do Cliente
             </summary>
             <example> Lucas Lima Mota</example>
         </member>
-        <member name="P:Consultorio.Core.Shared.ModelViews.NovoCliente.DataNascimento">
+        <member name="P:Consultorio.Core.Shared.ModelViews.Cliente.NovoCliente.DataNascimento">
             <summary>
             Data de Nascimento
             </summary>
             <example>23/04/1993</example>
         </member>
-        <member name="P:Consultorio.Core.Shared.ModelViews.NovoCliente.Sexo">
+        <member name="P:Consultorio.Core.Shared.ModelViews.Cliente.NovoCliente.Sexo">
             <summary>
             Sexo do Cliente
             </summary>
             <example>M</example>
         </member>
-        <member name="P:Consultorio.Core.Shared.ModelViews.NovoCliente.Documento">
+        <member name="P:Consultorio.Core.Shared.ModelViews.Cliente.NovoCliente.Documento">
             <summary>
             Documento
             </summary>
             <example>05769313201</example>
         </member>
-        <member name="P:Consultorio.Core.Shared.ModelViews.NovoCliente.Endereco">
+        <member name="P:Consultorio.Core.Shared.ModelViews.Cliente.NovoCliente.Endereco">
             <summary>
             Novo endereço do cliente
             </summary>
         </member>
-        <member name="P:Consultorio.Core.Shared.ModelViews.NovoTelefone.Numero">
+        <member name="P:Consultorio.Core.Shared.ModelViews.Telefone.NovoTelefone.Numero">
             <summary>
             Telefone do cliente
             </summary>

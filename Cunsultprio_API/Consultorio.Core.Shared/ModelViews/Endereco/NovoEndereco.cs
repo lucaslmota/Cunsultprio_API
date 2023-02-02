@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Consultorio.Core.Shared.ModelViews
+namespace Consultorio.Core.Shared.ModelViews.Endereco
 {
     public class NovoEndereco
     {

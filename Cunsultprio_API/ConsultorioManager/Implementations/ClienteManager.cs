@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Consultorio.Core.Shared.ModelViews;
+using Consultorio.Core.Shared.ModelViews.Cliente;
 using ConsultorioCore.Domain;
 using ConsultorioManager.Interfaces;
 using ConsultorioManager.InterfacesManager;

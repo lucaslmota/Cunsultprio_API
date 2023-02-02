@@ -1,4 +1,4 @@
-﻿using Consultorio.Core.Shared.ModelViews;
+﻿using Consultorio.Core.Shared.ModelViews.Erro;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;

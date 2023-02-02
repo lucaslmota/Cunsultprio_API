@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
-using Consultorio.Core.Shared.ModelViews;
+using Consultorio.Core.Shared.ModelViews.Cliente;
+using Consultorio.Core.Shared.ModelViews.Endereco;
+using Consultorio.Core.Shared.ModelViews.Telefone;
 using ConsultorioCore.Domain;
 using System;
 

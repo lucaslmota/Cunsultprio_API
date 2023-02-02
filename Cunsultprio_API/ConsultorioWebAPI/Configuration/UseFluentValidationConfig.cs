@@ -17,6 +17,7 @@ namespace ConsultorioWebAPI.Configuration
                             p.RegisterValidatorsFromAssemblyContaining<NovoClienteValidator>();
                             p.RegisterValidatorsFromAssemblyContaining<AlteraClienteValidator>();
                             p.RegisterValidatorsFromAssemblyContaining<NovoEnderecoValidator>();
+                            p.RegisterValidatorsFromAssemblyContaining<NovoMedicoValidator>();
                         });
 
             #pragma warning restore CS0618 // O tipo ou membro é obsoleto

@@ -7,7 +7,7 @@ namespace ConsultorioWebAPI.Configuration
     {
         public static void AutoMapperConfiguration(this IServiceCollection services)
         {
-            services.AddAutoMapper(typeof(NovoClienteMap), typeof(AlterarClienteMap));
+            services.AddAutoMapper(typeof(NovoClienteMap), typeof(AlterarClienteMap), typeof(NovoMedicoMappingProfile));
         }
     }
 }

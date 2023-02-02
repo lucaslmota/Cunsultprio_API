@@ -1,4 +1,4 @@
-﻿using Consultorio.Core.Shared.ModelViews;
+﻿using Consultorio.Core.Shared.ModelViews.Cliente;
 using ConsultorioCore.Domain;
 using FluentValidation;
 using System;

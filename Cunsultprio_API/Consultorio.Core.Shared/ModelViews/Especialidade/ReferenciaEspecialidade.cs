@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Consultorio.Core.Shared.ModelViews
+namespace Consultorio.Core.Shared.ModelViews.Especialidade
 {
-    public class AlterarCliente : NovoCliente
+    public class ReferenciaEspecialidade
     {
         public int Id { get; set; }
     }

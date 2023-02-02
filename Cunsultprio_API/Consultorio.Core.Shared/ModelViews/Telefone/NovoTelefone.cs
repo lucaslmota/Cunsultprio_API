@@ -1,4 +1,4 @@
-﻿namespace Consultorio.Core.Shared.ModelViews
+﻿namespace Consultorio.Core.Shared.ModelViews.Telefone
 {
     public class NovoTelefone
     {
@@ -6,6 +6,6 @@
         /// Telefone do cliente
         /// </summary>
         /// <example>88999999999</example>
-        public string Numero{get; set;}
+        public string Numero { get; set; }
     }
 }

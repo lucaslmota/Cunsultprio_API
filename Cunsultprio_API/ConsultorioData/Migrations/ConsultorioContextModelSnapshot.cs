@@ -78,6 +78,39 @@ namespace ConsultorioData.Migrations
                     b.ToTable("Enderecos");
                 });
 
+            modelBuilder.Entity("ConsultorioCore.Domain.Especialidade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Especialidades");
+                });
+
+            modelBuilder.Entity("ConsultorioCore.Domain.Medico", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CRM")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Medicos");
+                });
+
             modelBuilder.Entity("ConsultorioCore.Domain.Telefone", b =>
                 {
                     b.Property<int>("ClienteId")
@@ -89,6 +122,21 @@ namespace ConsultorioData.Migrations
                     b.HasKey("ClienteId", "Numero");
 
                     b.ToTable("Telefones");
+                });
+
+            modelBuilder.Entity("EspecialidadeMedico", b =>
+                {
+                    b.Property<int>("EspecialidadesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MedicosId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EspecialidadesId", "MedicosId");
+
+                    b.HasIndex("MedicosId");
+
+                    b.ToTable("EspecialidadeMedico");
                 });
 
             modelBuilder.Entity("ConsultorioCore.Domain.Endereco", b =>
@@ -111,6 +159,21 @@ namespace ConsultorioData.Migrations
                         .IsRequired();
 
                     b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("EspecialidadeMedico", b =>
+                {
+                    b.HasOne("ConsultorioCore.Domain.Especialidade", null)
+                        .WithMany()
+                        .HasForeignKey("EspecialidadesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConsultorioCore.Domain.Medico", null)
+                        .WithMany()
+                        .HasForeignKey("MedicosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ConsultorioCore.Domain.Cliente", b =>

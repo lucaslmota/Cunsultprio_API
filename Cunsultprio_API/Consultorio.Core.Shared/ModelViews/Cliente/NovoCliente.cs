@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Consultorio.Core.Shared.ModelViews.Endereco;
+using Consultorio.Core.Shared.ModelViews.Telefone;
 
-namespace Consultorio.Core.Shared.ModelViews
+namespace Consultorio.Core.Shared.ModelViews.Cliente
 {
     /// <summary>
     /// Objeto usado para uma nova inserção de um novo cliente
@@ -26,7 +28,7 @@ namespace Consultorio.Core.Shared.ModelViews
         /// </summary>
         /// <example>M</example>
         public string Sexo { get; set; }
-        
+
         public ICollection<NovoTelefone> Telefone { get; set; }
         /// <summary>
         /// Documento

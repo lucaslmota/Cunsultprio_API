@@ -1,4 +1,4 @@
-﻿using Consultorio.Core.Shared.ModelViews;
+﻿using Consultorio.Core.Shared.ModelViews.Endereco;
 using FluentValidation;
 using System;
 using System.Collections.Generic;
