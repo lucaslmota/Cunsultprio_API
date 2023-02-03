@@ -1,4 +1,5 @@
 ﻿using ConsultorioCore.Domain;
+using ConsultorioCore.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -14,6 +15,9 @@ namespace ConsultorioData.Configuration
         public void Configure(EntityTypeBuilder<Endereco> builder)
         {
             builder.HasKey(x => x.ClienteId);
+            builder.Property(x => x.Estado).HasConversion(
+                y => y.ToString(),
+                z => (EEstado)Enum.Parse(typeof(EEstado), z));
         }
     }
 }

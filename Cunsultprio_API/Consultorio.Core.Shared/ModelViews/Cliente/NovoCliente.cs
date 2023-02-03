@@ -27,7 +27,7 @@ namespace Consultorio.Core.Shared.ModelViews.Cliente
         /// Sexo do Cliente
         /// </summary>
         /// <example>M</example>
-        public string Sexo { get; set; }
+        public SexoView Sexo { get; set; }
 
         public ICollection<NovoTelefone> Telefone { get; set; }
         /// <summary>

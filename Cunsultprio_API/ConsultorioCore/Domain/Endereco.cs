@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsultorioCore.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace ConsultorioCore.Domain
     {
         public int ClienteId { get; set; }
         public string CEP { get; set; }
-        public string Estado { get; set; }
+        public EEstado Estado { get; set; }
         public string Cidade { get; set; }
         public string Logradouro { get; set;}
         public string Numero { get; set; }

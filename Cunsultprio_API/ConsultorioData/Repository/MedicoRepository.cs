@@ -53,16 +53,19 @@ namespace ConsultorioData.Repository
 
         public async Task<Medico> UpdateMedicoAsync(Medico medico)
         {
-            //var medicoConsultado = await _context.Medicos
-            //                            .Include(p => p.Especialidades)
-            //                            .SingleOrDefaultAsync(p => p.Id == medico.Id);
-             var medicoConsultado = await GetMedicoAsync(medico.Id);
+            var medicoConsultado = await _context.Medicos
+                                        .Include(p => p.Especialidades)
+                                        .SingleOrDefaultAsync(p => p.Id == medico.Id);
+            //var medicoConsultado = await GetMedicoAsync(medico.Id);
+            //var medicoConsultado =  await _context.Medicos.FindAsync(medico.Id);
             if (medicoConsultado == null)
             {
                 return null;
             }
+            
             _context.Entry(medicoConsultado).CurrentValues.SetValues(medico);
-            //await UpdateMedicoEspecialidades(medico, medicoConsultado);
+           // medicoConsultado.Especialidades = medico.Especialidades;
+            await UpdateMedicoEspecialidades(medico, medicoConsultado);
             await _context.SaveChangesAsync();
             return medicoConsultado;
         }

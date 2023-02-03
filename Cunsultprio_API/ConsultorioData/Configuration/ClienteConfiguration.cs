@@ -1,4 +1,5 @@
 ﻿using ConsultorioCore.Domain;
+using ConsultorioCore.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -15,6 +16,9 @@ namespace ConsultorioData.Configuration
         public void Configure(EntityTypeBuilder<Cliente> builder)
         {
             builder.Property(x => x.Nome).HasMaxLength(150);
+            builder.Property(x => x.Sexo).HasConversion(
+                y => y.ToString(),
+                z => (ESexo)Enum.Parse(typeof(ESexo), z));
         }
     }
 }

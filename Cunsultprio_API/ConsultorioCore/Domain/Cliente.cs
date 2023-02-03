@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsultorioCore.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace ConsultorioCore.Domain
         public int Id{ get; set; }
         public string Nome{ get; set; }
         public DateTime DataNascimento { get; set; }
-        public string Sexo { get; set; }
+        public ESexo Sexo { get; set; }
         public ICollection<Telefone> Telefone { get; set; } // 1 para muitos
         public string Documento{ get; set; }
         public DateTime Criacao{ get; set; }
