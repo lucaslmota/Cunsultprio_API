@@ -1,4 +1,5 @@
-﻿using ConsultorioCore.Domain;
+﻿using Consultorio.Core.Shared.ModelViews.Cliente;
+using ConsultorioCore.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

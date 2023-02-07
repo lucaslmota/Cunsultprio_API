@@ -7,6 +7,7 @@ using Serilog.Core;
 using SerilogTimings;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ConsultorioWebAPI.Controllers
@@ -26,11 +27,17 @@ namespace ConsultorioWebAPI.Controllers
         /// Retorna todos os clientes cadastrado na base
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(typeof(Cliente), 200)]
+        [ProducesResponseType(typeof(ClienteView), 200)]
         [ProducesResponseType(typeof(ProblemDetails),500)]
         public async Task<IActionResult> Get()
         {
-            return Ok( await _clienteManager.GetClientesAsync());
+            var cliente = await _clienteManager.GetClientesAsync();
+
+            if(cliente.Any())
+            {
+                return Ok(cliente);
+            }
+            return NotFound();
         }
 
        /// <summary>
@@ -38,12 +45,17 @@ namespace ConsultorioWebAPI.Controllers
        /// </summary>
        /// <param name="id" example="123"></param>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(Cliente), 200)]
+        [ProducesResponseType(typeof(ClienteView), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 404)]
         [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<IActionResult> GetId(int id)
         {
-            return Ok( await _clienteManager.GetClienteId(id));
+            var cliente = await _clienteManager.GetClienteId(id);
+            if(cliente.Id == 0)
+            {
+                return NotFound();
+            }
+            return Ok(cliente);
         }
 
         /// <summary>
@@ -51,7 +63,7 @@ namespace ConsultorioWebAPI.Controllers
         /// </summary>
         /// <param name="novoCliente"></param>
         [HttpPost]
-        [ProducesResponseType(typeof(Cliente), 201)]
+        [ProducesResponseType(typeof(ClienteView), 201)]
         [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<IActionResult> Post([FromBody] NovoCliente novoCliente)
         {
@@ -73,7 +85,7 @@ namespace ConsultorioWebAPI.Controllers
         /// </summary>
         /// <param name="alterarClientecliente"></param>
         [HttpPut]
-        [ProducesResponseType(typeof(Cliente), 200)]
+        [ProducesResponseType(typeof(ClienteView), 200)]
         [ProducesResponseType(typeof(ProblemDetails), 404)]
         [ProducesResponseType(typeof(ProblemDetails), 500)]
         public async Task<IActionResult> Put([FromBody] AlterarCliente alterarClientecliente)

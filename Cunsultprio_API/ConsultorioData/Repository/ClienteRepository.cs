@@ -45,22 +45,42 @@ namespace ConsultorioData.Repository
 
         public async Task<Cliente> UpdateCliente(Cliente cliente)
         {
-            var getCliente = await GetClienteId(cliente.Id);
-            if(cliente == null)
+            var clienteConsultado = await _consultorioContext.Clientes
+                .Include(x => x.Endereco)
+                .Include(x=> x.Telefone)
+                .FirstOrDefaultAsync(x => x.Id == cliente.Id);
+            if(clienteConsultado == null)
             {
                 return null;
             }
 
-            _consultorioContext.Entry(getCliente).CurrentValues.SetValues(cliente);
+            _consultorioContext.Entry(clienteConsultado).CurrentValues.SetValues(cliente);
+            clienteConsultado.Endereco = cliente.Endereco;
+            UpdateClienteTelefones(cliente, clienteConsultado);
             await _consultorioContext.SaveChangesAsync();
-            return getCliente;
+            return clienteConsultado;
+        }
+
+        private void UpdateClienteTelefones(Cliente cliente, Cliente clienteConsultado)
+        {
+            clienteConsultado.Telefone.Clear();
+            foreach (var telefone in cliente.Telefone)
+            {
+                clienteConsultado.Telefone.Add(telefone);
+            }
         }
 
         public async Task<Cliente> DeleteCliente(int id)
         {
-            var getCliente = await GetClienteId(id);
-            _consultorioContext.Remove(getCliente);
-            return getCliente;
+            var clienteConsultado = await _consultorioContext.Clientes.FindAsync(id);
+            if(clienteConsultado == null) 
+            { 
+                return null; 
+            }
+
+            var clienteRemovido = _consultorioContext.Clientes.Remove(clienteConsultado);
+            await _consultorioContext.SaveChangesAsync();
+            return clienteRemovido.Entity;
         }
     }
 }

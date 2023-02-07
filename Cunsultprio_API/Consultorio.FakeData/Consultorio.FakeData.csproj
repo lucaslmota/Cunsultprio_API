@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" Version="34.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Consultorio.Core.Shared\Consultorio.Core.Shared.csproj" />
+    <ProjectReference Include="..\ConsultorioCore\ConsultorioCore.csproj" />
+  </ItemGroup>
+
+</Project>

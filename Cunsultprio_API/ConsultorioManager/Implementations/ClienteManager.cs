@@ -3,6 +3,7 @@ using Consultorio.Core.Shared.ModelViews.Cliente;
 using ConsultorioCore.Domain;
 using ConsultorioManager.Interfaces;
 using ConsultorioManager.InterfacesManager;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,31 +23,36 @@ namespace ConsultorioManager.Implementations
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<Cliente>> GetClientesAsync()
+        public async Task<IEnumerable<ClienteView>> GetClientesAsync()
         {
-            return await _clienteRepository.GetClientesAsync();
+            var clientes = await _clienteRepository.GetClientesAsync();
+            return _mapper.Map<IEnumerable<Cliente>, IEnumerable<ClienteView>>(clientes);
         }
 
-        public async Task<Cliente> GetClienteId(int id)
+        public async Task<ClienteView> GetClienteId(int id)
         {
-            return await _clienteRepository.GetClienteId(id);
+            var cliente = await _clienteRepository.GetClienteId(id);
+            return _mapper.Map<ClienteView>(cliente);
         }
 
-        public async Task<Cliente> InsertCliente(NovoCliente novoCliente)
+        public async Task<ClienteView> InsertCliente(NovoCliente novoCliente)
         {
             var cliente = _mapper.Map<Cliente>(novoCliente);
-            return await _clienteRepository.InsertCliente(cliente);
+            cliente = await _clienteRepository.InsertCliente(cliente);
+            return _mapper.Map<ClienteView>(cliente);
         }
 
-        public async Task<Cliente> UpdateCliente(AlterarCliente alterarClientecliente)
+        public async Task<ClienteView> UpdateCliente(AlterarCliente alterarClientecliente)
         {
             var cliente = _mapper.Map<Cliente>(alterarClientecliente);
-            return await _clienteRepository.UpdateCliente(cliente);
+            cliente = await _clienteRepository.UpdateCliente(cliente);
+            return _mapper.Map<ClienteView>(cliente);
         }
 
-        public async Task<Cliente> DeleteCliente(int id)
+        public async Task<ClienteView> DeleteCliente(int id)
         {
-           return await _clienteRepository.DeleteCliente(id);
+            var cliente = await _clienteRepository.DeleteCliente(id);
+            return _mapper.Map<ClienteView>(cliente);
         }
     }
 }

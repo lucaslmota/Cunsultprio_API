@@ -10,10 +10,10 @@ namespace ConsultorioManager.InterfacesManager
 {
     public interface IClienteManager
     {
-        Task<Cliente> GetClienteId(int id);
-        Task<IEnumerable<Cliente>> GetClientesAsync();
-        Task<Cliente> InsertCliente(NovoCliente cliente);
-        Task<Cliente> UpdateCliente(AlterarCliente cliente);
-        Task<Cliente> DeleteCliente(int id);
+        Task<ClienteView> GetClienteId(int id);
+        Task<IEnumerable<ClienteView>> GetClientesAsync();
+        Task<ClienteView> InsertCliente(NovoCliente cliente);
+        Task<ClienteView> UpdateCliente(AlterarCliente cliente);
+        Task<ClienteView> DeleteCliente(int id);
     }
 }

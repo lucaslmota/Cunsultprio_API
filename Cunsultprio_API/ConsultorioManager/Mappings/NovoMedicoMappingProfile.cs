@@ -16,8 +16,9 @@ namespace ConsultorioManager.Mappings
         {
             CreateMap<NovoMedico, Medico>();
             CreateMap<Medico, MedicoView>();
-            CreateMap<Especialidade, NovaEspecialidade>().ReverseMap();
+            CreateMap<Especialidade, ReferenciaEspecialidade>().ReverseMap();
             CreateMap<Especialidade, EspecialidadeView>().ReverseMap();
+            CreateMap<Especialidade, NovaEspecialidade>().ReverseMap();
             CreateMap<AlteraMedico, Medico>().ReverseMap();
         }
     }
