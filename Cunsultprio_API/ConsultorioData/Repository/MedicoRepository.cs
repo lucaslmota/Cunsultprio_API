@@ -37,7 +37,7 @@ namespace ConsultorioData.Repository
         public async Task<Medico> InsertMedicoAsync(Medico medico)
         {
             await _context.Medicos.AddAsync(medico);
-            await InsertMedicoEspecilidades(medico);
+            //await InsertMedicoEspecilidades(medico);
             await _context.SaveChangesAsync();
             return medico;
         }
@@ -56,6 +56,9 @@ namespace ConsultorioData.Repository
             var medicoConsultado = await _context.Medicos
                                         .Include(p => p.Especialidades)
                                         .SingleOrDefaultAsync(p => p.Id == medico.Id);
+            
+            //medicoConsultado.Especialidades.Clear();
+            //medicoConsultado.Especialidades.Add()
             //var medicoConsultado = await GetMedicoAsync(medico.Id);
             //var medicoConsultado =  await _context.Medicos.FindAsync(medico.Id);
             if (medicoConsultado == null)
@@ -64,7 +67,7 @@ namespace ConsultorioData.Repository
             }
             
             _context.Entry(medicoConsultado).CurrentValues.SetValues(medico);
-           // medicoConsultado.Especialidades = medico.Especialidades;
+            medicoConsultado.Especialidades = medico.Especialidades;
             await UpdateMedicoEspecialidades(medico, medicoConsultado);
             await _context.SaveChangesAsync();
             return medicoConsultado;

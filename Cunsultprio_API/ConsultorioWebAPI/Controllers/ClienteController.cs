@@ -1,6 +1,7 @@
 ﻿using Consultorio.Core.Shared.ModelViews.Cliente;
 using ConsultorioCore.Domain;
 using ConsultorioManager.InterfacesManager;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Serilog.Core;
@@ -27,8 +28,9 @@ namespace ConsultorioWebAPI.Controllers
         /// Retorna todos os clientes cadastrado na base
         /// </summary>
         [HttpGet]
-        [ProducesResponseType(typeof(ClienteView), 200)]
-        [ProducesResponseType(typeof(ProblemDetails),500)]
+        [ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Get()
         {
             var cliente = await _clienteManager.GetClientesAsync();
@@ -45,9 +47,9 @@ namespace ConsultorioWebAPI.Controllers
        /// </summary>
        /// <param name="id" example="123"></param>
         [HttpGet("{id}")]
-        [ProducesResponseType(typeof(ClienteView), 200)]
-        [ProducesResponseType(typeof(ProblemDetails), 404)]
-        [ProducesResponseType(typeof(ProblemDetails), 500)]
+        [ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetId(int id)
         {
             var cliente = await _clienteManager.GetClienteId(id);
@@ -63,8 +65,8 @@ namespace ConsultorioWebAPI.Controllers
         /// </summary>
         /// <param name="novoCliente"></param>
         [HttpPost]
-        [ProducesResponseType(typeof(ClienteView), 201)]
-        [ProducesResponseType(typeof(ProblemDetails), 500)]
+        [ProducesResponseType(typeof(ClienteView), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post([FromBody] NovoCliente novoCliente)
         {
             //Cliente clienteInserido; registrar os tempos de execução.
@@ -85,9 +87,9 @@ namespace ConsultorioWebAPI.Controllers
         /// </summary>
         /// <param name="alterarClientecliente"></param>
         [HttpPut]
-        [ProducesResponseType(typeof(ClienteView), 200)]
-        [ProducesResponseType(typeof(ProblemDetails), 404)]
-        [ProducesResponseType(typeof(ProblemDetails), 500)]
+        [ProducesResponseType(typeof(ClienteView), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put([FromBody] AlterarCliente alterarClientecliente)
         {
             var atlaizarCliente = await _clienteManager.UpdateCliente(alterarClientecliente);
@@ -104,9 +106,9 @@ namespace ConsultorioWebAPI.Controllers
         /// </summary>
         /// <param name="id"></param>
         [HttpDelete("{id}")]
-        [ProducesResponseType(typeof(Cliente), 204)]
-        [ProducesResponseType(typeof(ProblemDetails), 404)]
-        [ProducesResponseType(typeof(ProblemDetails), 500)]
+        [ProducesResponseType(typeof(Cliente), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id)
         {
             var deleteCliente = await _clienteManager.DeleteCliente(id);

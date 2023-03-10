@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConsultorioData.Migrations
 {
     [DbContext(typeof(ConsultorioContext))]
-    [Migration("20230202235113_endereco-enum")]
-    partial class enderecoenum
+    [Migration("20230310155403_teste-update-many-to-many-revert")]
+    partial class testeupdatemanytomanyrevert
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

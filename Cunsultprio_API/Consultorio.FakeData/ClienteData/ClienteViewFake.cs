@@ -22,6 +22,7 @@ namespace Consultorio.FakeData.ClienteData
             RuleFor(x => x.Documento, f => f.Person.Cpf());
             RuleFor(x => x.Criacao, f => f.Date.Past());
             RuleFor(x => x.UltimaAtualizacao, f => f.Date.Past());
+            RuleFor(p => p.DataNascimento, f => f.Date.Past());
             RuleFor(x => x.Telefones, f => new TelefoneViewFaker().Generate(3));
             RuleFor(p => p.Endereco, f => new EnderecoViewFaker().Generate());
         }
