@@ -56,32 +56,40 @@ namespace ConsultorioData.Repository
             var medicoConsultado = await _context.Medicos
                                         .Include(p => p.Especialidades)
                                         .SingleOrDefaultAsync(p => p.Id == medico.Id);
+
+            medicoConsultado.Nome = medico.Nome;
+            medicoConsultado.CRM = medico.CRM;
             
-            //medicoConsultado.Especialidades.Clear();
-            //medicoConsultado.Especialidades.Add()
-            //var medicoConsultado = await GetMedicoAsync(medico.Id);
-            //var medicoConsultado =  await _context.Medicos.FindAsync(medico.Id);
+            foreach(var item in medicoConsultado.Especialidades)
+            {
+                foreach(var item2 in medico.Especialidades)
+                {
+                    item.Descricao = item2.Descricao;
+                }
+                var especialidade = await _context.Especialidades.SingleOrDefaultAsync(x => x.Id == item.Id);
+                medicoConsultado.Especialidades.Add(especialidade);
+            }
+
             if (medicoConsultado == null)
             {
                 return null;
             }
             
-            _context.Entry(medicoConsultado).CurrentValues.SetValues(medico);
-            medicoConsultado.Especialidades = medico.Especialidades;
-            await UpdateMedicoEspecialidades(medico, medicoConsultado);
             await _context.SaveChangesAsync();
             return medicoConsultado;
         }
 
-        private async Task UpdateMedicoEspecialidades(Medico medico, Medico medicoConsultado)
-        {
-            medicoConsultado.Especialidades.Clear();
-            foreach (var especialidade in medico.Especialidades)
-            {
-                var especialidadeConsultada = await _context.Especialidades.FindAsync(especialidade.Id);
-                medicoConsultado.Especialidades.Add(especialidadeConsultada);
-            }
-        }
+        //private async Task UpdateMedicoEspecialidades( Medico medicoConsultado)
+        //{
+        //    //medicoConsultado.Especialidades.Clear();
+        //    //int especialidadeConsultada? = null;
+        //    foreach (var especialidade in medicoConsultado.Especialidades)
+        //    {
+        //         var especialidadeConsultada = Convert.ToInt32(await _context.Especialidades.FindAsync(especialidade.Id));
+        //        //medicoConsultado.Especialidades.Add(especialidadeConsultada);
+        //    }
+        //    //return especialidadeConsultada;
+        //}
 
         public async Task DeleteMedicoAsync(int id)
         {
